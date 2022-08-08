@@ -2,15 +2,16 @@
 require 'koneksi.php';
   $id = $_GET["id"];
 
-  $ambil = query("SELECT * FROM data_obat INNER JOIN obat ON data_obat.id_obat = obat.id_obat WHERE data_obat.id_obat = '$id'")[0];
+  $ambil = query("SELECT * FROM data_obat WHERE id_data_obat = '$id'")[0];
     $id1 = $ambil["id_data_obat"];
-  $nama_obat = $ambil["nama_obat"];
-  $stok_obat = $ambil["banyak"];
+    $masuk = $ambil["id_masuk"];
+    $tgl = $ambil["tgl_masuk"];
+  $stok_obat = $ambil["keluar"];
 
 
-$obat = query("SELECT * FROM obat")[0];
-$id_ = $obat["id_obat"];
-$b = $obat["stok_obat"];
+$obat = query("SELECT * FROM masuk WHERE id_masuk = '$masuk'")[0];
+$id_ = $obat["id_masuk"];
+$b = $obat["jumblah"];
 $c = 0;
 $d = $b - $stok_obat;
 if ($d < 0) {
@@ -23,19 +24,19 @@ if ($d < 0) {
       return false;
 }
 
-$e = "UPDATE obat SET Stok_obat = '$d' WHERE id_obat = '$id_'";
+$e = "UPDATE masuk SET jumblah = '$d' WHERE id_masuk = '$id_'";
 mysqli_query($conn,$e) or die('gagal');
 
 
 
-  $sql = "INSERT INTO obat_k VALUES(NULL,'$nama_obat','$stok_obat')";
+  $sql = "INSERT INTO keluar VALUES(NULL,'$id_','$stok_obat','$tgl')";
   mysqli_query($conn,$sql);
 
   
 
   $query = "INSERT INTO resep VALUES(NULL,'$id1')";
- $s = mysqli_query($conn,$query) or die('gagal');
- if ($s) {
+$s = mysqli_query($conn,$query) or die('gagal');
+if ($s) {
     echo "
     <script>
         alert('Data Berhasil Diterima ')
@@ -49,4 +50,4 @@ mysqli_query($conn,$e) or die('gagal');
         document.location.href = 'dro.php';
     </script>
     ";
- }
+}

@@ -2,6 +2,9 @@
   include("layout/header.php");
   include("layout/navbar.php");
   include("layout/sidebar.php");
+
+  $id = $_GET["id"];
+  $ambil = query("SELECT * FROM obat WHERE id_obat = '$id'")[0];
 ?>
 
 
@@ -21,7 +24,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Master Data</a></li>
               <li class="breadcrumb-item"><a href="obat.php">Data Obat</a></li>
-              <li class="breadcrumb-item active">Tambah Data Obat</li>
+              <li class="breadcrumb-item active">Edit Data Obat</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -36,8 +39,9 @@
             <div class="card-body">
               <div class="form-group">
                 <form action="" method="post">
+                    <input type="hidden" name="id" value="<?= $ambil["id_obat"] ?>">
                   <label for="obat">Nama Data Obat</label>
-                  <input type="text" class="form-control" id="obat" name="obat" placeholder="Nama  DataObat" required>
+                  <input type="text" class="form-control" id="obat" name="obat" placeholder="Nama Data Obat" required value="<?= $ambil["obat"] ?>">
                 </div>
                 <div class="form-group">
                   <button  type="text"  name="kirim" class="btn btn-info"><i class="fa fa-check"></i>Kirim</button>
@@ -53,20 +57,22 @@
 
 <?php
   if (isset($_POST["kirim"])) {
+    $id = $_POST["id"];
     $obat = $_POST["obat"];
-    $query = "INSERT INTO obat VALUES (NULL,'$obat')";
+    $query = "UPDATE obat SET 
+    obat = '$obat' WHERE id_obat = '$id'";
     $s = mysqli_query($conn,$query);
     if ($s) {
       echo "
       <script>
-          alert('Data Berhasil Ditambah ')
+          alert('Data Berhasil Diedit')
           document.location.href = 'obat.php';
       </script>
       ";
     }else {
       echo "
       <script>
-          alert('Data Gagal Ditambah ')
+          alert('Data Gagal Diedit ')
           document.location.href = 'obat.php';
       </script>
       ";

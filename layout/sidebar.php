@@ -55,15 +55,62 @@
           </li>
           <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                  <i class="far fa-clone nav-icon"></i>
+                  <i class="fa fa-file-alt nav-icon"></i>
                   <p>
-                  Data Obat
+                  Master Data
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
+                    <a href="satuan.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Data Satuan</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="jenis.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Data Jenis</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="kategori.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Data Kategori</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="obat.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Data Obat</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="expire.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Data Expire</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="suplier.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Data Suplier</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+          <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-cart-plus nav-icon"></i>
+                  <p>
+                  Transaksi
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="masuk.php" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Obat Masuk</p>
                     </a>
@@ -76,17 +123,46 @@
                   </li>
                 </ul>
               </li>
-          <li class="nav-item">
+          <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-book-reader nav-icon"></i>
+                  <p>
+                  Evaluasi Data
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="dipakai.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Sering Digunakan</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="tdkpakai.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Kurang Digunakan</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
             <a href="dro.php" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Laporan Resep</p>
             </a>
           </li>
+              <!-- <li class="nav-item has-treeview">
+            <a href="pages/examples/logout.php" class="nav-link">
+              <i class="nav-icon fa fa-door-closed"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+          </li> -->
             <?php endif ?>
-
             <!-- dokter -->
           <?php if ($_SESSION["tingkatan"] == 2) : ?>
-     
           <li class="nav-item has-treeview">
             <a href="t_obat_m.php" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -101,6 +177,52 @@
               <p>Data Resep Obat Masuk</p>
             </a>
           </li>
+          <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-cart-plus nav-icon"></i>
+                  <p>
+                  Transaksi
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="masuk.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Masuk</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="obat_k.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Keluar</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+          <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-book-reader nav-icon"></i>
+                  <p>
+                  Evaluasi Data
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="dipakai.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Sering Digunakan</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="tdkpakai.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Kurang Digunakan</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
           <li class="nav-item">
             <a href="dro.php" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
@@ -108,8 +230,6 @@
             </a>
           </li>
             <?php endif ?>
-
-
             <!-- apotik -->
             <?php if ($_SESSION["tingkatan"] == 3) : ?>
           <li class="nav-item">
@@ -120,15 +240,15 @@
           </li>
           <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                  <i class="far fa-clone nav-icon"></i>
+                  <i class="fa fa-cart-plus nav-icon"></i>
                   <p>
-                  Data Obat
+                  Transaksi
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="obat.php" class="nav-link">
+                    <a href="masuk.php" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Obat Masuk</p>
                     </a>
@@ -137,6 +257,29 @@
                     <a href="obat_k.php" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Obat Keluar</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+          <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-book-reader nav-icon"></i>
+                  <p>
+                  Evaluasi Data
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="dipakai.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Sering Digunakan</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="tdkpakai.php" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Obat Kurang Digunakan</p>
                     </a>
                   </li>
                 </ul>

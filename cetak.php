@@ -10,7 +10,7 @@ INNER JOIN obat on data_obat.id_obat = obat.id_obat
 WHERE data_obat.id_pengguna = '$id'
 ");
 
-$ht ='<!DOCTYPE html>
+$ht = '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,26 +32,25 @@ $ht ='<!DOCTYPE html>
             </tr>
         </thead>
         <tbody>';
-        $i = 1;
-        foreach ($obat as $penguna){
-            $ht .='
+$i = 1;
+foreach ($obat as $penguna) {
+    $ht .= '
                 <tr>
-                <td>'.$i++.'</td>
-                <td>'.$penguna["nama"].'</td>
-                <td>'.$penguna["nama_obat"].'</td>
-                <td>'.$penguna["jenis_tanaman"].'</td>
-                <td>'.$penguna["banyak"].' Hekatar</td>
-                <td>'.$penguna["keterangan_obat"].' Hektar</td>
+                <td>' . $i++ . '</td>
+                <td>' . $penguna["nama"] . '</td>
+                <td>' . $penguna["nama_obat"] . '</td>
+                <td>' . $penguna["jenis_tanaman"] . '</td>
+                <td>' . $penguna["banyak"] . ' Hekatar</td>
+                <td>' . $penguna["keterangan_obat"] . ' Hektar</td>
                 </tr>
             ';
-        }
-    
-$ht .='</table>
+}
+
+$ht .= '</table>
 </body>
 </html>';
 
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($ht);
 $mpdf->Output();
-$mpdf->Output('laporan-pertanian.pdf',\Mpdf\Output\Destination::INLINE);
-?>
+$mpdf->Output('laporan-pertanian.pdf', \Mpdf\Output\Destination::INLINE);

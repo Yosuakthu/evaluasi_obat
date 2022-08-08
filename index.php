@@ -5,26 +5,7 @@
 ?>
 
 
-<?php
-    // include("../../koneksi.php");
-    function ambildata_obat(){
-        global $conn;
-        return (int) mysqli_fetch_row(mysqli_query($conn,"SELECT COUNT(*) FROM data_obat"))[0];
-    }
-    function ambilobatmasuk(){
-        global $conn;
-        return (int) mysqli_fetch_row(mysqli_query($conn,"SELECT COUNT(*) FROM obat"))[0];
-    }
-    function ambilobatk(){
-        global $conn;
-        return (int) mysqli_fetch_row(mysqli_query($conn,"SELECT COUNT(*) FROM obat_k"))[0];
-    }
-    function ambildatatolak(){
-        global $conn;
-        return (int) mysqli_fetch_row(mysqli_query($conn,"SELECT COUNT(*) FROM resep "))[0];
-    }
 
-?>
 
 
 
@@ -59,74 +40,8 @@
               <h1>Selamat Datang <?= $_SESSION["nama"] ?> </h1>
             </div>
             <!-- /.card-body -->
-          </div>
+         
 
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3><?= ambildata_obat() ?></h3>
-                
-                <p>Data Resep Obat Masuk</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?= ambilobatmasuk() ?></h3>
-
-
-                <p>Data Obat Masuk</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><?= ambilobatk() ?></h3>
-
-                <p>Data Obat keluar</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><?= ambildatatolak() ?></h3>
-
-                <p>Laporan Resep</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
 
 
        

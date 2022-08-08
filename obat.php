@@ -2,8 +2,7 @@
   include("layout/header.php");
   include("layout/navbar.php");
   include("layout/sidebar.php");
-
-  $obat = query("SELECT * FROM obat");
+ $obat = query("SELECT * FROM obat")
 ?>
 
 
@@ -17,11 +16,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Data Obat</h1>
+           
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Master Data</a></li>
               <li class="breadcrumb-item active">Data Obat</li>
             </ol>
           </div><!-- /.col -->
@@ -33,17 +32,16 @@
     <!-- Main content -->
     <section class="content">
     <div class="card">
-            <div class="card-header">
-            <a href="tambahobat.php" type="button" class="btn btn-success">Tambah Data</a>
-            </div>
+        <div class="card-header">
+        <a href="tambahobat.php" class="btn btn-info" ><i class="fa fa-plus"> Tambah Data</i></a>
+        </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="obat" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Nama Obat</th>
-                  <th>Stok Obat Masuk</th>
+                  <th>Jenis Obat</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -52,14 +50,14 @@
                   <?php foreach ($obat as $key) : ?>
                 <tr>
                   <td width="50px"><?= $i; ?></td>
-                  <td><?= $key["nama_obat"]; ?></td>
-                  <td><?= $key["stok_obat"]; ?></td>
-                  <td  width="150px">
-                  <a href="ubahobat.php?id=<?= $key["id_obat"];?>" class="btn btn-info" style="
+                  <td><?= $key["obat"]; ?></td>
+                  <td  width="200px">
+                  <a href="editobat.php?id=<?= $key["id_obat"];?>" class="btn btn-info" style="
     float: center;"><i class="fa fa-edit"></i></a>
                   <a href="hapusobat.php?id=<?= $key["id_obat"] ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')" style="
-    float: center;"><i class="fa fa-trash"></i></a></td>
+                float: center;"><i class="fa fa-trash"></i></a></td>
                   </td>
+           
                 </tr>
                 <?php $i++; ?>
                 <?php endforeach ?>
@@ -74,19 +72,21 @@
   <!-- /.content-wrapper -->
 
 
+
+
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="dist/js/demo.js"></script>
 <!-- page script -->
 <script>
   $(function () {

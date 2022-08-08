@@ -3,7 +3,23 @@
   include("layout/navbar.php");
   include("layout/sidebar.php");
 
-  $obat = query("SELECT * FROM pengguna INNER JOIN tingkatan On pengguna.id_tingkatan = tingkatan.id_tingkatan");
+
+    $obat = query("SELECT *,keluar.id_masuk,COUNT(keluar.id_masuk) AS masuk FROM keluar 
+    INNER JOIN masuk ON keluar.id_masuk = masuk.id_masuk
+    INNER JOIN satuan ON masuk.id_satuan = satuan.id_satuan
+    INNER JOIN jenis ON masuk.id_jenis = jenis.id_jenis
+    INNER JOIN kategori ON masuk.id_kategori = kategori.id_kategori
+    INNER JOIN suplier ON masuk.id_suplier = suplier.id_suplier
+    INNER JOIN ket ON masuk.id_ket = ket.id_ket
+    INNER JOIN expire ON masuk.id_expire = expire.id_expire
+    INNER JOIN obat ON expire.id_obat = obat.id_obat GROUP BY keluar.id_masuk ORDER BY COUNT(keluar.id_masuk) DESC LIMIT 5 ");
+
+
+    
+    
+
+
+
 ?>
 
 
@@ -21,8 +37,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data User</li>
+              <li class="breadcrumb-item"><a href="#">Evaluasi Data</a></li>
+              <li class="breadcrumb-item active">Obat Sering Digunakan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,35 +49,37 @@
     <!-- Main content -->
     <section class="content">
     <div class="card">
-            <div class="card-header">
-            <a href="tambahuser.php" type="button" class="btn btn-success">Tambah Data</a>
-            </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="obat" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NO.</th>
-                  <th>Nama Pengguna</th>
-                  <th>Username</th>
-                  <th>Level User</th>
-                  <th>Aksi</th>
+                <th>NO.</th>
+                  <th>Nama Obat</th>
+                  <th>Satauan Obat</th>
+                  <th>Jenis Obat</th>
+                  <th>Kategori Obat</th>
+                  <th>Jumblah Obat Keluar</th>
+                  <th>Tanggal Keluar Obat</th>
+                  <th>Expire Obat</th>
+                  <th>Keterangan</th>
+                  <th width="250px">Suplier Obat</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php $i = 1; ?>
                   <?php foreach ($obat as $key) : ?>
                 <tr>
-                  <td width="50px"><?= $i; ?></td>
-                  <td><?= $key["nama"]; ?></td>
-                  <td><?= $key["username"]; ?></td>
-                  <td><?= $key["tingkatan"]; ?></td>
-                  <td  width="150px">
-                  <a href="ubahuser.php?id=<?= $key["id_pengguna"];?>" class="btn btn-info" style="
-    float: center;"><i class="fa fa-edit"></i></a>
-                  <a href="hapususer.php?id=<?= $key["id_pengguna"] ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')" style="
-    float: center;"><i class="fa fa-trash"></i></a></td>
-                  </td>
+                <td width="50px"><?= $i; ?></td>
+                  <td><?= $key["obat"]; ?></td>
+                <td><?= $key["satuan"]; ?></td>
+                <td><?= $key["jenis"]; ?></td>
+                <td><?= $key["kategori"]; ?></td>
+                <td><?= $key["keluar"]; ?></td>
+                <td><?= $key["tgl_klr"]; ?></td>
+                <td><?= $key["expire"]; ?></td>
+                <td><?= $key["ket"]; ?></td>
+                <td><?= $key["suplier"]; ?></td>
                 </tr>
                 <?php $i++; ?>
                 <?php endforeach ?>

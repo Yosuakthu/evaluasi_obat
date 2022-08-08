@@ -2,8 +2,7 @@
   include("layout/header.php");
   include("layout/navbar.php");
   include("layout/sidebar.php");
-
-  $obat = query("SELECT * FROM pengguna INNER JOIN tingkatan On pengguna.id_tingkatan = tingkatan.id_tingkatan");
+ $suplier = query("SELECT * FROM suplier")
 ?>
 
 
@@ -17,12 +16,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Data User</h1>
+           
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data User</li>
+              <li class="breadcrumb-item"><a href="#">Master Data</a></li>
+              <li class="breadcrumb-item active">Data Suplier</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,35 +32,32 @@
     <!-- Main content -->
     <section class="content">
     <div class="card">
-            <div class="card-header">
-            <a href="tambahuser.php" type="button" class="btn btn-success">Tambah Data</a>
-            </div>
+        <div class="card-header">
+        <a href="tambahsuplier.php" class="btn btn-info" ><i class="fa fa-plus"> Tambah Data</i></a>
+        </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="obat" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>NO.</th>
-                  <th>Nama Pengguna</th>
-                  <th>Username</th>
-                  <th>Level User</th>
+                  <th>Suplier Obat</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php $i = 1; ?>
-                  <?php foreach ($obat as $key) : ?>
+                  <?php foreach ($suplier as $key) : ?>
                 <tr>
                   <td width="50px"><?= $i; ?></td>
-                  <td><?= $key["nama"]; ?></td>
-                  <td><?= $key["username"]; ?></td>
-                  <td><?= $key["tingkatan"]; ?></td>
-                  <td  width="150px">
-                  <a href="ubahuser.php?id=<?= $key["id_pengguna"];?>" class="btn btn-info" style="
+                  <td><?= $key["suplier"]; ?></td>
+                  <td  width="200px">
+                  <a href="editsuplier.php?id=<?= $key["id_suplier"];?>" class="btn btn-info" style="
     float: center;"><i class="fa fa-edit"></i></a>
-                  <a href="hapususer.php?id=<?= $key["id_pengguna"] ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')" style="
-    float: center;"><i class="fa fa-trash"></i></a></td>
+                  <a href="hapussuplier.php?id=<?= $key["id_suplier"] ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')" style="
+                float: center;"><i class="fa fa-trash"></i></a></td>
                   </td>
+           
                 </tr>
                 <?php $i++; ?>
                 <?php endforeach ?>
@@ -74,6 +70,8 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
 
 
 <!-- jQuery -->

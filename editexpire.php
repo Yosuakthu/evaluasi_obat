@@ -2,6 +2,9 @@
   include("layout/header.php");
   include("layout/navbar.php");
   include("layout/sidebar.php");
+  $id = $_GET["id"];
+  $ambil = query("SELECT * FROM expire 
+  INNER JOIN obat ON expire.id_obat = obat.id_obat WHERE expire.id_expire = '$id'")[0];
 ?>
 
 
@@ -20,8 +23,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-              <li class="breadcrumb-item"><a href="obat.php">Data Obat</a></li>
-              <li class="breadcrumb-item active">Tambah Data Obat</li>
+              <li class="breadcrumb-item"><a href="expire.php">Data Expire</a></li>
+              <li class="breadcrumb-item active">Tambah Data Expire</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -34,13 +37,27 @@
     <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
-              <div class="form-group">
                 <form action="" method="post">
-                  <label for="obat">Nama Data Obat</label>
-                  <input type="text" class="form-control" id="obat" name="obat" placeholder="Nama  DataObat" required>
+                    
+              <div class="form-group">
+                    <label for="obat">Nama Obat</label>
+                    <select class="form-control" name="obat" id="obat" required >
+                        <option></option>
+                        <?php
+                        $query1 =  "SELECT * FROM obat ";
+                        $s = mysqli_query($conn,$query1);
+                            while ($data = mysqli_fetch_array($s)) : ?>
+                                <option value="<?= $data["id_obat"]; ?>" ><?= $data["obat"]; ?></option>
+                            <?php endwhile ?>
+                    </select>
+                </div>
+                <input type="hidden" name="id_" value="<?= $ambil["id_expire"]; ?>">
+              <div class="form-group">
+                  <label for="expire">Tanggal Expire</label>
+                  <input type="date" class="form-control" id="expire" name="expire" required value="<?= $ambil["expire"] ?>">
                 </div>
                 <div class="form-group">
-                  <button  type="text"  name="kirim" class="btn btn-info"><i class="fa fa-check"></i>Kirim</button>
+                  <button  type="submit"  name="kirim" class="btn btn-info"><i class="fa fa-check"></i>Kirim</button>
                 </div>
               </form>
             </div>
@@ -53,25 +70,31 @@
 
 <?php
   if (isset($_POST["kirim"])) {
-    $obat = $_POST["obat"];
-    $query = "INSERT INTO obat VALUES (NULL,'$obat')";
-    $s = mysqli_query($conn,$query);
+    $id = $_POST["id_"];
+    $id_obat = $_POST["obat"];
+    $ex = $_POST["expire"];
+    $query = "UPDATE expire SET
+    id_obat = '$id_obat', 
+    expire = '$ex' 
+    WHERE id_expire = '$id'
+    ";
+    $s = mysqli_query($conn,$query) or die('gagal 1');
     if ($s) {
       echo "
       <script>
-          alert('Data Berhasil Ditambah ')
-          document.location.href = 'obat.php';
+          alert('Data Berhasil Diubah ')
+          document.location.href = 'expire.php';
       </script>
       ";
     }else {
       echo "
       <script>
-          alert('Data Gagal Ditambah ')
-          document.location.href = 'obat.php';
+          alert('Data Gagal Diubah ')
+          document.location.href = 'expire.php';
       </script>
       ";
-    }
   }
+}
 
 ?>
 
@@ -111,3 +134,9 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+

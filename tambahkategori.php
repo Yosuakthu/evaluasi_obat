@@ -19,9 +19,9 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-              <li class="breadcrumb-item"><a href="obat.php">Data Obat</a></li>
-              <li class="breadcrumb-item active">Tambah Data Obat</li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="kategori.php">Data Kategori</a></li>
+              <li class="breadcrumb-item active">Tambah Data Kategori</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -36,8 +36,8 @@
             <div class="card-body">
               <div class="form-group">
                 <form action="" method="post">
-                  <label for="obat">Nama Data Obat</label>
-                  <input type="text" class="form-control" id="obat" name="obat" placeholder="Nama  DataObat" required>
+                  <label for="kategori">Nama Kategori Obat</label>
+                  <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Nama Kategori Obat" required>
                 </div>
                 <div class="form-group">
                   <button  type="text"  name="kirim" class="btn btn-info"><i class="fa fa-check"></i>Kirim</button>
@@ -53,21 +53,21 @@
 
 <?php
   if (isset($_POST["kirim"])) {
-    $obat = $_POST["obat"];
-    $query = "INSERT INTO obat VALUES (NULL,'$obat')";
+    $kategori = $_POST["kategori"];
+    $query = "INSERT INTO kategori VALUES (NULL,'$kategori')";
     $s = mysqli_query($conn,$query);
     if ($s) {
       echo "
       <script>
           alert('Data Berhasil Ditambah ')
-          document.location.href = 'obat.php';
+          document.location.href = 'kategori.php';
       </script>
       ";
     }else {
       echo "
       <script>
           alert('Data Gagal Ditambah ')
-          document.location.href = 'obat.php';
+          document.location.href = 'kategori.php';
       </script>
       ";
     }

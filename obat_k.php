@@ -3,7 +3,16 @@
   include("layout/navbar.php");
   include("layout/sidebar.php");
 
-  $obat = query("SELECT * FROM obat_k");
+  $obat = query("SELECT * FROM keluar 
+  INNER JOIN masuk ON keluar.id_masuk = masuk.id_masuk
+  INNER JOIN satuan ON masuk.id_satuan = satuan.id_satuan
+  INNER JOIN jenis ON masuk.id_jenis = jenis.id_jenis
+  INNER JOIN kategori ON masuk.id_kategori = kategori.id_kategori
+  INNER JOIN suplier ON masuk.id_suplier = suplier.id_suplier
+  INNER JOIN ket ON masuk.id_ket = ket.id_ket
+  INNER JOIN expire ON masuk.id_expire = expire.id_expire
+  INNER JOIN obat ON expire.id_obat = obat.id_obat
+  ");
 ?>
 
 
@@ -33,9 +42,6 @@
     <!-- Main content -->
     <section class="content">
     <div class="card">
-            <div class="card-header">
-            <a href="tambahobat.php" type="button" class="btn btn-success">Tambah Data</a>
-            </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="obat" class="table table-bordered table-striped">
@@ -43,7 +49,14 @@
                 <tr>
                   <th>NO.</th>
                   <th>Nama Obat</th>
-                  <th>Stok Obat Masuk</th>
+                  <th>Satauan Obat</th>
+                  <th>Jenis Obat</th>
+                  <th>Kategori Obat</th>
+                  <th>Jumblah Obat Keluar</th>
+                  <th>Tanggal Keluar Obat</th>
+                  <th>Expire Obat</th>
+                  <th>Keterangan</th>
+                  <th width="250px">Suplier Obat</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -52,12 +65,17 @@
                   <?php foreach ($obat as $key) : ?>
                 <tr>
                   <td width="50px"><?= $i; ?></td>
-                  <td><?= $key["obat_k"]; ?></td>
-                  <td><?= $key["stok_k"]; ?></td>
-                  <td  width="150px">
-                  <a href="ubahobat_k.php?id=<?= $key["id_obat_k"];?>" class="btn btn-info" style="
-    float: center;"><i class="fa fa-edit"></i></a>
-                  <a href="hapusobat_k.php?id=<?= $key["id_obat_k"] ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')" style="
+                  <td><?= $key["obat"]; ?></td>
+                <td><?= $key["satuan"]; ?></td>
+                <td><?= $key["jenis"]; ?></td>
+                <td><?= $key["kategori"]; ?></td>
+                <td><?= $key["keluar"]; ?></td>
+                <td><?= $key["tgl_klr"]; ?></td>
+                <td><?= $key["expire"]; ?></td>
+                <td><?= $key["ket"]; ?></td>
+                <td><?= $key["suplier"]; ?></td>
+                  <td>
+                  <a href="hapusobat_k.php?id=<?= $key["id_keluar"] ?>" class="btn btn-danger" onclick="return confirm('Hapus data?')" style="
     float: center;"><i class="fa fa-trash"></i></a></td>
                   </td>
                 </tr>
@@ -75,18 +93,18 @@
 
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="dist/js/demo.js"></script>
 <!-- page script -->
 <script>
   $(function () {

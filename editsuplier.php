@@ -2,6 +2,9 @@
   include("layout/header.php");
   include("layout/navbar.php");
   include("layout/sidebar.php");
+
+  $id = $_GET["id"];
+  $ambil = query("SELECT * FROM suplier WHERE id_suplier = '$id'")[0];
 ?>
 
 
@@ -20,8 +23,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-              <li class="breadcrumb-item"><a href="obat.php">Data Obat</a></li>
-              <li class="breadcrumb-item active">Tambah Data Obat</li>
+              <li class="breadcrumb-item"><a href="suplier.php">Data Suplier</a></li>
+              <li class="breadcrumb-item active">Edit Data Suplier</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -36,8 +39,9 @@
             <div class="card-body">
               <div class="form-group">
                 <form action="" method="post">
-                  <label for="obat">Nama Data Obat</label>
-                  <input type="text" class="form-control" id="obat" name="obat" placeholder="Nama  DataObat" required>
+                    <input type="hidden" name="id" value="<?= $ambil["id_suplier"] ?>">
+                  <label for="suplier">Nama Suplier Obat</label>
+                  <input type="text" class="form-control" id="suplier" name="suplier" placeholder="Nama Suplier Obat" required value="<?= $ambil["suplier"] ?>">
                 </div>
                 <div class="form-group">
                   <button  type="text"  name="kirim" class="btn btn-info"><i class="fa fa-check"></i>Kirim</button>
@@ -53,21 +57,23 @@
 
 <?php
   if (isset($_POST["kirim"])) {
-    $obat = $_POST["obat"];
-    $query = "INSERT INTO obat VALUES (NULL,'$obat')";
+    $id = $_POST["id"];
+    $suplier = $_POST["suplier"];
+    $query = "UPDATE suplier SET 
+    suplier = '$suplier' WHERE id_suplier = '$id'";
     $s = mysqli_query($conn,$query);
     if ($s) {
       echo "
       <script>
-          alert('Data Berhasil Ditambah ')
-          document.location.href = 'obat.php';
+          alert('Data Berhasil Diedit')
+          document.location.href = 'suplier.php';
       </script>
       ";
     }else {
       echo "
       <script>
-          alert('Data Gagal Ditambah ')
-          document.location.href = 'obat.php';
+          alert('Data Gagal Diedit ')
+          document.location.href = 'suplier.php';
       </script>
       ";
     }

@@ -87,12 +87,14 @@ if (mysqli_num_rows($r) === 1) {
     $pas = $s["pass"];
     $level = $s["id_tingkatan"];
     $level1 = $s["tingkatan"];
+    $id = $s["id_pengguna"];
 
     if (($pass == $pas)) {
         $_SESSION["username"] = $us;
         $_SESSION["nama"] = $user;
         $_SESSION["tingkatan"] = $level;
         $_SESSION["nama2"] = $level1;
+        $_SESSION["id"] = $id;
         $_SESSION["login"] = true;
         header('location:../../index.php');
     }

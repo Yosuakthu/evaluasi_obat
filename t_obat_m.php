@@ -4,11 +4,6 @@
   include("layout/sidebar.php");
 
 ?>
-
-
-
- 
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -29,56 +24,70 @@
     </div>
     <!-- /.content-header -->
 
+    <?php
+        $query = mysqli_query($conn, "SELECT max(id_data_obat) as kode FROM data_obat");
+        $data = mysqli_fetch_array($query);
+        $kodeTr = $data['kode'];
+
+        $urutan = (int) substr($kodeTr, 3, 3);
+        $urutan++;
+        $huruf = "RST";
+        $kode = $huruf . sprintf("%03s", $urutan);
+    ?>
+
     <!-- Main content -->
     <section class="content">
         <div class="card">
-            <div class="card-header">
-                
-            </div>
             <div class="card-body" >
                 <form action="" method="post">
-                <div class="form-group">
+                <div class="row">
+                  <input type="hidden" name="id" value="<?= $_SESSION["id"] ?>">
+                  <div class="col-md-4">
+                                    <label for="">Kode Transaksi</label>
+                                    <input type="text" class="form-control" name="kode" value="<?= $kode ?>" readonly>
+                                </div>
+                                <div class="col-md-4">
                                     <label for="id">Nama Dokter</label>
-                                    <select class="form-control" name="id" id="id" required>
-                                    
-                                        <option></option>
-                                        <?php
-                                        $query =  "SELECT * FROM pengguna WHERE id_tingkatan = 2";
-                                        $s = mysqli_query($conn,$query);
-                                        while ($data = mysqli_fetch_array($s)) : ?>
-                                            <option value="<?= $data["id_pengguna"]; ?>" ><?= $data["nama"]; ?></option>
-                                            <?php endwhile ?>
-                                    </select>
+                                    <input type="text" class="form-control" id="id" name="nama" value="<?= $_SESSION["nama"] ?>" readonly>
                                 </div>
-                <div class="form-group">
-                                    <label for="ido">Nama obat</label>
-                                    <select class="form-control" name="ido" id="ido" required>
-                                    
-                                        <option></option>
-                                        <?php
-                                        $query =  "SELECT * FROM obat WHERE id_obat";
-                                        $s = mysqli_query($conn,$query);
-                                        while ($data = mysqli_fetch_array($s)) : ?>
-                                            <option value="<?= $data["id_obat"]; ?>" ><?= $data["nama_obat"]; ?></option>
-                                            <?php endwhile ?>
-                                    </select>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Tanggal Resep</label>
+                                        <input type="date" class="form-control" name="tgl_masuk" value="2022-08-06" required="">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                        <label for="banyak">Banyak Obat(Butir)</label>
-                        <input type="text" class="form-control" name="banyak" id="banyak">
-                    </div>
-                    <label for="ket">Keterangan Obat</label>
-                    <div class="form-group">
-                        <textarea id="ket" name="ket"  cols="50" rows="3"></textarea>
-                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                <label for="obat">Obat</label>
+                                <select name="obat" id="obat" class="form-control" required>
+                                    <option value="">- Plih Obat -</option>
+                                    <?php
+                                    $query1 =  "SELECT * FROM masuk INNER JOIN expire ON masuk.id_expire = expire.id_expire
+                                    INNER JOIN obat ON expire.id_obat = obat.id_obat WHERE masuk.id_ket = 1 ";
+                            $s = mysqli_query($conn,$query1);
+                                while ($data = mysqli_fetch_array($s)) : ?>
+                                    <option value="<?= $data["id_obat"]; ?>" ><?= $data["obat"]; ?></option>
+                                    <?php endwhile ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                            <label for="keluar">Jumblah Obat Keluar</label>
+                            <input type="number" name="keluar" class="form-control" placeholder="Obat Keluar" required>
+                        </div>
+                            </div>
+                            <label for="ket">Keterangan</label>
+                        <div class="form-group">
+                            <textarea name="ket" id="Ket" cols="87" rows="3"></textarea>
+                        </div>
+                            <br>
                     <div class="form-group">
                         <input type="hidden" name="res" value="1">
                    <button class="btn btn-primary" type="submit"  name="kirim"><i class="fa fa-check">Kirim</i></button>
                     </div>
                 </form>
             </div>
-        </div>
-      
+        </div>      
     </section>
     <!-- /.content -->
   </div>

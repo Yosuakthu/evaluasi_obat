@@ -15,12 +15,27 @@ function query($query){
 function tambah($data){
     global $conn;
     $id = $data["id"];
-    $ido = $data["ido"];
+    $kode = $data["kode"];
+    $tgl = $data["tgl_masuk"];
+    $obat = $data["obat"];
+    $keluar = $data["keluar"];
     $ket = $data["ket"];
-    $banyak = $data["banyak"];
     $res = $data["res"];
-    $sql = "INSERT INTO data_obat VALUES(NULL,'$id','$ido','$banyak','$ket','$res')";
-    mysqli_query($conn,$sql);
+
+    $a = query("SELECT * FROM masuk
+    INNER JOIN satuan ON masuk.id_satuan = satuan.id_satuan
+    INNER JOIN jenis ON masuk.id_jenis = jenis.id_jenis
+    INNER JOIN kategori ON masuk.id_kategori = kategori.id_kategori
+    INNER JOIN suplier ON masuk.id_suplier = suplier.id_suplier
+    INNER JOIN ket ON masuk.id_ket = ket.id_ket
+    INNER JOIN expire ON masuk.id_expire = expire.id_expire
+    INNER JOIN obat ON expire.id_obat = obat.id_obat WHERE expire.id_obat = '$obat' 
+    ")[0];
+
+    $masuk = $a["id_masuk"];
+
+    $sql = "INSERT INTO data_obat VALUES('$kode','$id','$masuk','$tgl','$keluar','$ket','$res')";
+    mysqli_query($conn,$sql) or die('gagal');
     return mysqli_affected_rows($conn);
 }
 
@@ -47,12 +62,12 @@ function tambahobat($data){
 
 function hapus_db($id){
     global $conn;
-    mysqli_query($conn,"DELETE FROM data_obat WHERE id_data_obat = $id");
+    mysqli_query($conn,"DELETE FROM data_obat WHERE id_data_obat = '$id'");
     return mysqli_affected_rows($conn);
 }
 function hapus_dbk($id){
     global $conn;
-    mysqli_query($conn,"DELETE FROM obat_k WHERE id_obat_k = $id");
+    mysqli_query($conn,"DELETE FROM keluar WHERE id_keluar = '$id'");
     return mysqli_affected_rows($conn);
 }
 function hapus_r($id){
