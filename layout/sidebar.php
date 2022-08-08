@@ -47,12 +47,6 @@
               <p>Data Resep Obat Masuk</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="resep.php" class="nav-link">
-              <i class="nav-icon fas fa-clone"></i>
-              <p>Cek Resep Obat</p>
-            </a>
-          </li>
           <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="fa fa-file-alt nav-icon"></i>
