@@ -53,6 +53,7 @@
                   <th>Jenis Obat</th>
                   <th>Kategori Obat</th>
                   <th>Jumblah Obat Keluar</th>
+                  <th>Presentasi Jumblah Obat</th>
                   <th>Tanggal Keluar Obat</th>
                   <th>Expire Obat</th>
                   <th>Keterangan</th>
@@ -70,6 +71,13 @@
                 <td><?= $key["jenis"]; ?></td>
                 <td><?= $key["kategori"]; ?></td>
                 <td><?= $key["keluar"]; ?></td>
+                <td width="100px"><?php
+                  $p = 100;
+                  $masuk =(int) $key["jumblah"];
+                  $keluar =(int) $key["keluar"];
+                  $persen = $keluar/$masuk*$p;
+                  echo round($persen,2);
+                ?>%</td>
                 <td><?= $key["tgl_klr"]; ?></td>
                 <td><?= $key["expire"]; ?></td>
                 <td><?= $key["ket"]; ?></td>

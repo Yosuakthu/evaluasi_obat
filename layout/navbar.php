@@ -8,10 +8,5 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index.php" class="nav-link">Home</a>
       </li>
-      <?php if ($_SESSION["login"] == true) : ?>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="pages/examples/logout.php" class="nav-link">Logout</a>
-      </li>
-      <?php endif ?>
   </nav>
   <!-- /.navbar -->

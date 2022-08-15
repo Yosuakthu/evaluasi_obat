@@ -1,10 +1,10 @@
 
- <!-- Main Sidebar Container -->
- <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+          style="opacity: .8">
       <span class="brand-text font-weight-light">EVALUASI OBAT</span>
     </a>
 
@@ -12,7 +12,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+              with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -146,14 +146,14 @@
               <p>Laporan Resep</p>
             </a>
           </li>
-              <!-- <li class="nav-item has-treeview">
+              <li class="nav-item has-treeview">
             <a href="pages/examples/logout.php" class="nav-link">
               <i class="nav-icon fa fa-door-closed"></i>
               <p>
                 Logout
               </p>
             </a>
-          </li> -->
+          </li>
             <?php endif ?>
             <!-- dokter -->
           <?php if ($_SESSION["tingkatan"] == 2) : ?>
@@ -223,6 +223,14 @@
               <p>Laporan Resep</p>
             </a>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="pages/examples/logout.php" class="nav-link">
+              <i class="nav-icon fa fa-door-closed"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>
             <?php endif ?>
             <!-- apotik -->
             <?php if ($_SESSION["tingkatan"] == 3) : ?>
@@ -282,6 +290,14 @@
             <a href="dro.php" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Laporan Resep</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="pages/examples/logout.php" class="nav-link">
+              <i class="nav-icon fa fa-door-closed"></i>
+              <p>
+                Logout
+              </p>
             </a>
           </li>
             <?php endif ?>
